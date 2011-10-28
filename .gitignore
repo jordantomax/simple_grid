@@ -5,3 +5,4 @@ error_log
 /.htaccess
 robots.txt
 .sass-cache/*
+*.swp
