@@ -1,7 +1,6 @@
 .grid-container {
   width: 960px;
-  margin: 0 auto;
-  position: relative; }
+  margin: 0 auto; }
   .grid-container:after {
     content: ".";
     display: block;
@@ -15,7 +14,8 @@
   margin: 0 0.521%;
   display: inline;
   float: left;
-  position: relative; }
+  background-color: #000;
+  height: 1000px; }
 
 .grid-2 {
   width: 15.625%;
@@ -23,7 +23,8 @@
   margin: 0 0.521%;
   display: inline;
   float: left;
-  position: relative; }
+  background-color: #000;
+  height: 1000px; }
 
 .grid-3 {
   width: 23.958%;
@@ -31,7 +32,8 @@
   margin: 0 0.521%;
   display: inline;
   float: left;
-  position: relative; }
+  background-color: #000;
+  height: 1000px; }
 
 .grid-4 {
   width: 32.292%;
@@ -39,7 +41,8 @@
   margin: 0 0.521%;
   display: inline;
   float: left;
-  position: relative; }
+  background-color: #000;
+  height: 1000px; }
 
 .grid-5 {
   width: 40.625%;
@@ -47,7 +50,8 @@
   margin: 0 0.521%;
   display: inline;
   float: left;
-  position: relative; }
+  background-color: #000;
+  height: 1000px; }
 
 .grid-6 {
   width: 48.958%;
@@ -55,7 +59,8 @@
   margin: 0 0.521%;
   display: inline;
   float: left;
-  position: relative; }
+  background-color: #000;
+  height: 1000px; }
 
 .grid-7 {
   width: 57.292%;
@@ -63,7 +68,8 @@
   margin: 0 0.521%;
   display: inline;
   float: left;
-  position: relative; }
+  background-color: #000;
+  height: 1000px; }
 
 .grid-8 {
   width: 65.625%;
@@ -71,7 +77,8 @@
   margin: 0 0.521%;
   display: inline;
   float: left;
-  position: relative; }
+  background-color: #000;
+  height: 1000px; }
 
 .grid-9 {
   width: 73.958%;
@@ -79,7 +86,8 @@
   margin: 0 0.521%;
   display: inline;
   float: left;
-  position: relative; }
+  background-color: #000;
+  height: 1000px; }
 
 .grid-10 {
   width: 82.292%;
@@ -87,7 +95,8 @@
   margin: 0 0.521%;
   display: inline;
   float: left;
-  position: relative; }
+  background-color: #000;
+  height: 1000px; }
 
 .grid-11 {
   width: 90.625%;
@@ -95,7 +104,8 @@
   margin: 0 0.521%;
   display: inline;
   float: left;
-  position: relative; }
+  background-color: #000;
+  height: 1000px; }
 
 .grid-12 {
   width: 98.958%;
@@ -103,7 +113,8 @@
   margin: 0 0.521%;
   display: inline;
   float: left;
-  position: relative; }
+  background-color: #000;
+  height: 1000px; }
 
 #site-nav p {
   color: #ebebeb; }

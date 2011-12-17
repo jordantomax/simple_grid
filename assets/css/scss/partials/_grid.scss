@@ -1,15 +1,17 @@
+// edit these values
 $cols: 12;
 $margin: 5;
-$layout-width: 950 + $margin * 2;
-$col-width: $layout-width / $cols;
-$percent-margin: $margin / $layout-width;
+$layout-width: 950; 
 
-// CONTAINER
+// do not edit these values
+$layout-margin-width: $layout-width + $margin * 2;
+$col-width: $layout-margin-width / $cols;
+$percent-margin: $margin / $layout-margin-width;
 
+// Grid Container
 .grid-container {
-  width: $layout-width + px;
+  width: $layout-margin-width + px;
   margin: 0 auto;
-  position: relative;
 
   &:after {
     content: ".";
@@ -20,15 +22,15 @@ $percent-margin: $margin / $layout-width;
   }
 }
 
-// COLUMNS
-
+// Grid Columns
 @for $i from 1 through $cols {
   .grid-#{$i} {
-    width: ( ($col_width * $i / $layout-width) - 2 * $percent-margin) * 100%;
+    width: ( ($col_width * $i / $layout-margin-width) - 2 * $percent-margin) * 100%;
     padding: 0;
     margin: 0 $percent-margin * 100%;
     display: inline;
     float: left;
-    position: relative;
+    background-color: #000;
+    height: 1000px;
   }
 }
