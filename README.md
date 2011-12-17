@@ -7,11 +7,11 @@ Simple Grid makes it a snap to output the css necessary to use a percentage base
 In order to use Simple Grid, you will need a compiler for sass.  
 Many options are available, the simplest being to install the sass gem. This assumes that ruby is installed on your machine.  
 
-  gem install sass
+    gem install sass
 
 You can then use the built in watch script to watch and compile your files.
 
-  sass --watch style.scss:style.css
+    sass --watch style.scss:style.css
 
 More information can be found at [sass-lang.com](http://sass-lang.com/ "Sass-lang")
 
@@ -20,43 +20,43 @@ More information can be found at [sass-lang.com](http://sass-lang.com/ "Sass-lan
 Before implementing Simple Grid, you must output the necessary css. To do this, edit the first three variables in \_grid.scss, which can be found in assets/css/scss/partials/  
 The following values would output the css necessary to construct a 12 column grid, with a total width of 950px, and a percentage equivalent of 5px margins</p>
 
-  $cols: 12;  
-  $magin: 5;  
-  $layout-width: 950;  
+    $cols: 12;  
+    $magin: 5;  
+    $layout-width: 950;  
 
 Once you have the necessary css, you're ready to write some markup! Heres how it looks.
 
-  <div class="grid-container site-header">
-    <div class="grid-4 logo">
-      <!-- I'm inside of a grid column! It has the percentage width of 4 columns -->
+    <div class="grid-container site-header">
+      <div class="grid-4 logo">
+        <!-- I'm inside of a grid column! It has the percentage width of 4 columns -->
+      </div>
+      <div class="grid-4 user-links">
+        <!-- I'm inside of a grid column! It has the percentage width of 8 columns -->
+      </div>
     </div>
-    <div class="grid-4 user-links">
-      <!-- I'm inside of a grid column! It has the percentage width of 8 columns -->
-    </div>
-  </div>
 
 Ideally, you would use the grid more semantically, avoiding class names like the ones above. Something like this:
   
-  <div class="site-header">
-    <div class="logo">
-    </div>
-    <div class="user-links">
-    </div>
-  </div> 
+    <div class="site-header">
+      <div class="logo">
+      </div>
+      <div class="user-links">
+      </div>
+    </div> 
 
 You might then extend or include(if we had written the grid as a mixin) the proper grid classes. That css may look like:
 
-  .site-header {
-    @extend .grid-container;
-  }
-  
-  .logo {
-    @extend .grid-4;
-  }
+    .site-header {
+      @extend .grid-container;
+    }
+    
+    .logo {
+      @extend .grid-4;
+    }
 
-  .user-links {
-    @extend .grid-8;
-  } 
+    .user-links {
+      @extend .grid-8;
+    } 
 
 ## License
 
