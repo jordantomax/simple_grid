@@ -4,8 +4,7 @@ Simple Grid makes it a snap to output the css necessary to use a percentage base
 
 ##Setup
 
-In order to use Simple Grid, you will need a compiler for sass.  
-Many options are available, the simplest being to install the sass gem. This assumes that ruby is installed on your machine.  
+In order to use Simple Grid, you will need a compiler for sass. Many options are available, the simplest being to install the sass gem. This assumes that ruby is installed on your machine.  
 
     gem install sass
 
@@ -17,8 +16,7 @@ More information can be found at [sass-lang.com](http://sass-lang.com/ "Sass-lan
 
 ##Usage
 
-Before implementing Simple Grid, you must output the necessary css. To do this, edit the first three variables in \_grid.scss, which can be found in assets/css/scss/partials/  
-The following values would output the css necessary to construct a 12 column grid, with a total width of 950px, and a percentage equivalent of 5px margins</p>
+Before implementing Simple Grid, you must output the necessary css. To do this, edit the first three variables in \_grid.scss, which can be found in assets/css/scss/partials/. The following values would output the css necessary to construct a 12 column grid, with a total width of 950px, and a percentage equivalent of 5px margins</p>
 
     $cols: 12;  
     $magin: 5;  
