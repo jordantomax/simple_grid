@@ -16,28 +16,37 @@ More information can be found at [sass-lang.com](http://sass-lang.com/ "Sass-lan
 
 ##Usage
 
+###CSS
+
 Before implementing Simple Grid, you must output the necessary css. To do this, edit the first three variables in \_grid.scss, which can be found in assets/css/scss/partials/. The following values would output the css necessary to construct a 12 column grid, with a total width of 950px, and a percentage equivalent of 5px margins</p>
 
     $cols: 12;  
-    $magin: 5;  
+    $margin: 5;  
     $layout-width: 950;  
+
+###HTML
 
 Once you have the necessary css, you're ready to write some markup! Heres how it looks.
 
     <div class="grid-container site-header">
+  
       <div class="grid-4 logo">
-        <!-- I'm inside of a grid column! It has the percentage width of 4 columns -->
+        <!-- Grid column of has the percentage width of 4 columns -->
       </div>
+
       <div class="grid-4 user-links">
         <!-- I'm inside of a grid column! It has the percentage width of 8 columns -->
       </div>
+
     </div>
 
 Ideally, you would use the grid more semantically, avoiding class names like the ones above. Something like this:
   
     <div class="site-header">
+
       <div class="logo">
       </div>
+
       <div class="user-links">
       </div>
     </div> 
