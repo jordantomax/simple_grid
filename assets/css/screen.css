@@ -1,7 +1,7 @@
-.grid-container {
-  width: 960px;
+.wrapper {
+  width: 930px;
   margin: 0 auto; }
-  .grid-container:after {
+  .wrapper:after {
     content: ".";
     display: block;
     height: 0;
@@ -9,108 +9,72 @@
     visibility: hidden; }
 
 .grid-1 {
-  width: 7.292%;
+  width: 9.274%;
   padding: 0;
-  margin: 0 0.521%;
+  margin: 0 1.613%;
   display: inline;
   float: left;
   background-color: #000;
   height: 1000px; }
 
 .grid-2 {
-  width: 15.625%;
+  width: 21.774%;
   padding: 0;
-  margin: 0 0.521%;
+  margin: 0 1.613%;
   display: inline;
   float: left;
   background-color: #000;
   height: 1000px; }
 
 .grid-3 {
-  width: 23.958%;
+  width: 34.274%;
   padding: 0;
-  margin: 0 0.521%;
+  margin: 0 1.613%;
   display: inline;
   float: left;
   background-color: #000;
   height: 1000px; }
 
 .grid-4 {
-  width: 32.292%;
+  width: 46.774%;
   padding: 0;
-  margin: 0 0.521%;
+  margin: 0 1.613%;
   display: inline;
   float: left;
   background-color: #000;
   height: 1000px; }
 
 .grid-5 {
-  width: 40.625%;
+  width: 59.274%;
   padding: 0;
-  margin: 0 0.521%;
+  margin: 0 1.613%;
   display: inline;
   float: left;
   background-color: #000;
   height: 1000px; }
 
 .grid-6 {
-  width: 48.958%;
+  width: 71.774%;
   padding: 0;
-  margin: 0 0.521%;
+  margin: 0 1.613%;
   display: inline;
   float: left;
   background-color: #000;
   height: 1000px; }
 
 .grid-7 {
-  width: 57.292%;
+  width: 84.274%;
   padding: 0;
-  margin: 0 0.521%;
+  margin: 0 1.613%;
   display: inline;
   float: left;
   background-color: #000;
   height: 1000px; }
 
 .grid-8 {
-  width: 65.625%;
+  width: 96.774%;
   padding: 0;
-  margin: 0 0.521%;
-  display: inline;
-  float: left;
-  background-color: #000;
-  height: 1000px; }
-
-.grid-9 {
-  width: 73.958%;
-  padding: 0;
-  margin: 0 0.521%;
-  display: inline;
-  float: left;
-  background-color: #000;
-  height: 1000px; }
-
-.grid-10 {
-  width: 82.292%;
-  padding: 0;
-  margin: 0 0.521%;
-  display: inline;
-  float: left;
-  background-color: #000;
-  height: 1000px; }
-
-.grid-11 {
-  width: 90.625%;
-  padding: 0;
-  margin: 0 0.521%;
-  display: inline;
-  float: left;
-  background-color: #000;
-  height: 1000px; }
-
-.grid-12 {
-  width: 98.958%;
-  padding: 0;
-  margin: 0 0.521%;
+  margin: 0 1.613%;
   display: inline;
   float: left;
   background-color: #000;
