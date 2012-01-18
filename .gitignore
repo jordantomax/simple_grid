@@ -1,4 +1,5 @@
 .ftpquota
+.vimrc
 .DS_Store
 *.tmproj
 error_log
