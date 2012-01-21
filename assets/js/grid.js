@@ -1,135 +1,41 @@
+// Author: Jordan Cooperman
+// Contact: jordancooperman@gmail.com, @jordancooperman
+// Date: January, 2012
+
 (function() {
+	
+	var
+	layoutWidth = 'layout_width',
+	marginWidth = 'margin_width',
+	columns = 'columns';
 
-  function checkIsNumber(value) {
-    var
-    intRegex = /^\d+$/,
-    floatRegex = /^((\d+(\.\d *)?)|((\d*\.)?\d+))$/;
 
-    if (intRegex.test(value) || floatRegex.test(value)) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  function getElementsByClass(searchClass,node,tag) {
-    var classElements = new Array();
-    if ( node == null )
-      node = document;
-    if ( tag == null )
-      tag = '*';
-    var els = node.getElementsByTagName(tag);
-    var elsLen = els.length;
-    var pattern = new RegExp("(^|\\s)"+searchClass+"(\\s|$)");
-    for (i = 0, j = 0; i < elsLen; i++) {
-      if ( pattern.test(els[i].className) ) {
-        classElements[j] = els[i];
-        j++;
-      }
-    }
-    return classElements;
-  }
-
-  // get one level deep size of any object
-  function getSize(obj) {
-    var size = 0;
-
-    for (var key in obj) {
-      if (obj.hasOwnProperty(key)) size++;
-    }
-    return size;
-  }
-
-  // get all one level deep keys in an object
-  function getKeys(obj) {
-    var keys = [];
-
-    for (var key in obj) {
-      if (obj.hasOwnProperty(key)) keys.push(key);
-
-      // if our value is also an object
-      if (getSize(obj[key]) > 0) {
-      }
-    }
-    return keys;
-  }
-
-  // get all values in an object
-  function getValues(obj) {
-    values = [];
-
-    for (var key in obj) {
-      if (obj.hasOwnProperty(key)) values.push(obj[key]);
-    }
-    return values;
-  }
-
-  // create a DOM element, where attrs is an object literal
-  function createElement(tag, attrs) {
-    var element = document.createElement(tag);
-
-    if (typeof attrs != 'undefined') {
-      var key = getKeys(attrs),
-          value = getValues(attrs),
-          i = 0,
-          len = getSize(attrs);
-      for (i; i < len; i++) {
-        element.setAttribute(key[i], value[i]);
-      }
-    }
-    return element;
-  }
-
-  function createElements( tag, id, obj ) {
-    var
-    keys = getKeys(obj),
-    values = getValues(obj),
-    elements = {},
-    i = 0,
-    len = keys.length;
-
-    for (i; i < len; i++) {
-      elements[i] = createElement( tag, values[i] );
-    }
-    // return an object that contains our new inputs
-    return elements;
-  }
-
-  // create an input
-  function createInput( attrs ) {
-    var input = createElement( 'input', attrs );
-    return input;
-  }
-
-  // create an object that contains inputs
-  function createForm( id, obj, labels ) {
-    var inputs = createElements( 'input', id, obj );
-    return inputs;
-  }
+/* APPLICATION FUNCTIONS
+--------------------------------------- */
 
   function setupInputs() {
 
     // an object that represents our inputs
     var inputs = {
       cols: {
-        id: 'columns',
+        id: columns,
         type: 'text',
         placeholder: 'Number of Columns',
-        value: 8
+        value: localStorage.getItem(columns) ? localStorage.getItem(columns) : 8
       },
 
       layoutWidth: {
-        id: 'layout_width',
+        id: layoutWidth,
         type: 'text',
         placeholder: 'Layout Width',
-        value: 960
+        value: localStorage.getItem(layoutWidth) ? localStorage.getItem(layoutWidth) : 960 
       },
 
       marginWidth: {
-        id: 'margin_width',
+        id: marginWidth,
         type: 'text',
         placeholder: 'Margin Width',
-        value: 10
+        value: localStorage.getItem(marginWidth) ? localStorage.getItem(marginWidth) : 10 
       }
     },
     // ...and turn them into an object that contains DOM elements
@@ -145,9 +51,9 @@
 
     // check the values in our new inputs
     // ...and set event to check on key up
-    checkInput( form[0]['id'] );
-    checkInput( form[1]['id'] );
-    checkInput( form[2]['id'] );
+    checkInput( layoutWidth );
+    checkInput( marginWidth );
+    checkInput( columns);
   }
 
   // check inputs on page load, then watch for new input
@@ -160,65 +66,92 @@
       input = document.getElementById( id );
       document.getElementById( id ).onkeyup = function() {
         // when we change a value
-        changeGrid.call(this);
+        routeInput.call(this);
       };
       if (!init) {
         init = true;
-        changeGrid.call(input);
-        return input;
+        routeInput.call(input);
+        return input.value;
       }
     }();
     return value;
   }
 
-  function changeGrid() {
-    var
-    divs = document.getElementsByTagName('div'),
-    wrappers = getElementsByClass('wrapper', document, 'div'),
-    i = 0;
-
+  function routeInput() {
+		var input;
     // is it a number?
     if (checkIsNumber(this.value)) {
       // which input is it for?
       switch (this.getAttribute('id')) {
-        case 'columns':
+        case columns:
+					input = columns;
           break;
-        case 'layout_width':
-          for(i; i < wrappers.length; i++) {
-            wrappers[i].style.width = this.value + 'px';
-          }
+        case layoutWidth:
+					input = layoutWidth;
           break;
-        case 'margin_width':
+        case marginWidth:
+					input = marginWidth;
           break;
         default:
           console.log('not getting an expected input id');
       }
     }
-
-    // for(i; i < len; i++) {
-    //   if (divs[i].getAttribute('data-grid')) {
-    //   }
-    // }
+		if (input) modifyGridElements.call(this, input);
   }
 
+  function modifyGridElements(input) {
+		var
+		gridElements = getGridElements(),
+    wrappers = getElementsByClass('wrapper', document, 'div'),
+		margin = getMarginWidth(),
+		percentMargin = (margin / getLayoutWidth() * 100) + '%',
+		len = gridElements.length,
+		i = 0;
 
-  // var grid = {
-  //   getWrapper:  function() {
-  //     var wrapper = getElementsByClass('wrapper', document, 'div');
-  //     return wrapper;
-  //   },
+		if (input == layoutWidth) localStorage.setItem( layoutWidth, this.value );
+		else if (input == marginWidth) localStorage.setItem( marginWidth, this.value );
+		else if (input == columns) localStorage.setItem( columns, this.value );
 
-  //   changeColumns: function(value) {
-  //     var wrapper = this.getWrapper;
-  //   },
+    for(i; i < wrappers.length; i++) {
+			console.log(getLayoutWidth());
+      wrappers[i].style.width = (getLayoutWidth() + getMarginWidth()*2) + 'px';
+    }
 
-  //   changeLayoutWidth: function(value) {
-  //     var wrapper = grid.getWrapper();
-  //   },
+		i = 0;
+		for(i; i < len; i++) {
 
-  //   changeMarginWidth: function(value) {
-  //   }
-  // }
+			gridElements[i].style.marginLeft = percentMargin;
+			gridElements[i].style.marginRight = percentMargin;
+      gridElements[i].style.width = ((gridElements[i].getAttribute('data-grid')/getNumberOfCols() * 100) - parseFloat(percentMargin)*2) + '%';
+		}
+  }
+
+	function getGridElements() {
+    var
+    divs = document.getElementsByTagName('div'),
+		gridElements = [],
+    len = divs.length,
+    i = 0;
+		
+    for(i; i < len; i++) {
+      if (divs[i].getAttribute('data-grid')) {
+				gridElements.push(divs[i]);
+      }
+    }
+		return gridElements;
+	}
+
+  function getMarginWidth() {
+    return parseFloat(document.getElementById(marginWidth).value);
+  }
+
+  function getLayoutWidth() {
+    return parseFloat(document.getElementById(layoutWidth).value);
+  }
+
+	function getNumberOfCols() {
+		return parseFloat(document.getElementById(columns).value);
+	}
 
   window.onload = function() {
     setupInputs();
