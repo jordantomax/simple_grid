@@ -59,26 +59,43 @@
   // check inputs on page load, then watch for new input
   function checkInput( id ) {
     var
-    init = false,
     input = document.getElementById( id ),
-		value = parseFloat(input.value);
+		value = parseFloat(input.value),
+		arrowKey = false;
 
+		routeInput.call(input);
 
-    (function() {
+		input.onkeyup = function() {
+			if (!arrowKey) {
+				value = parseFloat(this.value);
+				this.setAttribute('value', value);
+				routeInput.call(this); 
+			}
+		}
 
-      input.onkeyup = function(e) {
-				if (e.keyCode ==  38) this.setAttribute('value', value++); // up
-				if (e.keyCode ==  40) this.setAttribute('value', value--); // down
+		input.onkeydown = function(e) {
+			value = parseFloat(this.value);
 
-        routeInput.call(this);
-      };
+			if (e.keyCode ==  38) {
+				arrowKey = true;
+				value++;  // up
+			}
 
-      if (!init) {
-        init = true;
-        routeInput.call(input);
-        return input.value;
-      }
-    }());
+			else if (e.keyCode == 40) {
+				arrowKey = true;
+				value--; // down
+			}
+
+			if (arrowKey) {
+				arrowKey = false;
+
+				// setting the attribute seems only to work
+				// when we're actually typing
+				if (value) this.value = value.toString();
+				else this.value = 1;
+				routeInput.call(this); 
+			}
+		};
   }
 
   function routeInput() {
@@ -159,4 +176,4 @@
   window.onload = function() {
     setupInputs();
   };
-}())
+}());
