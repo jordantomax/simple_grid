@@ -60,21 +60,25 @@
   function checkInput( id ) {
     var
     init = false,
-    input;
+    input = document.getElementById( id ),
+		value = parseFloat(input.value);
 
-    var value = function() {
-      input = document.getElementById( id );
-      document.getElementById( id ).onkeyup = function() {
-        // when we change a value
+
+    (function() {
+
+      input.onkeyup = function(e) {
+				if (e.keyCode ==  38) this.setAttribute('value', value++); // up
+				if (e.keyCode ==  40) this.setAttribute('value', value--); // down
+
         routeInput.call(this);
       };
+
       if (!init) {
         init = true;
         routeInput.call(input);
         return input.value;
       }
-    }();
-    return value;
+    }());
   }
 
   function routeInput() {
@@ -113,7 +117,6 @@
 		else if (input == columns) localStorage.setItem( columns, this.value );
 
     for(i; i < wrappers.length; i++) {
-			console.log(getLayoutWidth());
       wrappers[i].style.width = (getLayoutWidth() + getMarginWidth()*2) + 'px';
     }
 
