@@ -59,6 +59,7 @@
     setupInputEvents( layoutWidth );
     setupInputEvents( marginWidth );
     setupInputEvents( columns);
+		setupGridEvents();
   }
 
   // set up events
@@ -102,6 +103,22 @@
 			}
 		};
   }
+
+	function setupGridEvents() {
+		var
+		gridElements = getGridElements(),
+		len = gridElements.length,
+		i = 0;
+
+		for(i; i < len; i++) {
+			if (gridElements[i].addEventListener) {
+				gridElements[i].addEventListener('mouseover', displayGridOptions, false);
+			}
+		}
+	}
+
+	function displayGridOptions() {
+	}
 
   function routeInput() {
 		var input;
@@ -174,6 +191,10 @@
 		}
 		init = true;
   }
+
+	function setupGridElementEvents() {
+		
+	}
 
 	function getGridElements() {
     var

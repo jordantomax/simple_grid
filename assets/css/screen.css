@@ -117,8 +117,53 @@ Please have a look around, I hope you enjoy your stay.
   background-color: #000;
   height: 1000px; }
 
+.helvetica, body {
+  font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  -webkit-font-smoothing: antialiased; }
+
+body {
+  /* 16px / 24px */
+  font-size: 1em;
+  line-height: 1.5em; }
+
+.tiny {
+  /* 11px / 12px */
+  font-size: 0.688em;
+  line-height: 1.091em; }
+
+.mini {
+  /* 12px / 12px */
+  font-size: 0.75em;
+  line-height: 1em; }
+
+.small {
+  /* 14px / 18px */
+  font-size: 0.875em;
+  line-height: 1.286em; }
+
+.normal {
+  /* 16px / 24px */
+  font-size: 1em;
+  line-height: 1.5em;
+  /* 24 */ }
+
+.big {
+  /* 18px / 24px */
+  font-size: 1.125em;
+  line-height: 1.333em; }
+
 /* a.`base elements
 ------------------------- */
+/* 1.`Layout
+---------------------------------------------- */
+/* a.`header
+------------------------- */
+#grid-editor {
+  position: absolute;
+  width: 100%;
+  padding: 1.5em;
+  background-color: #fff; }
+
 /* 2.`Extensible Classes
 ---------------------------------------------- */
 .group {

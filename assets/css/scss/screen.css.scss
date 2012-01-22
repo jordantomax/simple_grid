@@ -37,10 +37,29 @@ Please have a look around, I hope you enjoy your stay.
 /* 0.`General
 ---------------------------------------------- */
 
+@import "partials/mixins";
+
 @import "partials/grid";
+
+@import "partials/type";
 
 /* a.`base elements
 ------------------------- */
+
+
+/* 1.`Layout
+---------------------------------------------- */
+
+/* a.`header
+------------------------- */
+
+#grid-editor {
+	position: absolute;
+	width: 100%;
+	padding: $base;
+	background-color: #fff;
+}
+
 
 /* 2.`Extensible Classes
 ---------------------------------------------- */
