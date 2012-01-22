@@ -7,7 +7,10 @@
 	var
 	layoutWidth = 'layout_width',
 	marginWidth = 'margin_width',
-	columns = 'columns';
+	columns = 'columns',
+
+	wrapperElementTag = 'div',
+	gridElementTag = 'div';
 
 
 /* APPLICATION FUNCTIONS
@@ -39,25 +42,27 @@
       }
     },
     // ...and turn them into an object that contains DOM elements
-    form = createForm( 'grid-editor', inputs ),
+    inputs = createFormElements( 'grid-editor', inputs ),
+		form = createElement('form', {id: 'grid-editor'});
     body = document.getElementsByTagName("body")[0],
-    len = getSize(form),
+    len = getSize(inputs),
     i = 0;
 
+		// insert the form inside the body
+		body.insertBefore(form, document.body.firstChild);
+
     for (i; i < len; i++) {
-      // ...and insert each element into the DOM
-      body.insertBefore(form[i], document.body.firstChild);
+      // ...and insert each input into the form 
+			form.appendChild(inputs[i]);
     }
 
-    // check the values in our new inputs
-    // ...and set event to check on key up
-    checkInput( layoutWidth );
-    checkInput( marginWidth );
-    checkInput( columns);
+    setupInputEvents( layoutWidth );
+    setupInputEvents( marginWidth );
+    setupInputEvents( columns);
   }
 
-  // check inputs on page load, then watch for new input
-  function checkInput( id ) {
+  // set up events
+  function setupInputEvents( id ) {
     var
     input = document.getElementById( id ),
 		value = parseFloat(input.value),
@@ -122,33 +127,57 @@
 
   function modifyGridElements(input) {
 		var
+		init,
 		gridElements = getGridElements(),
-    wrappers = getElementsByClass('wrapper', document, 'div'),
+    wrappers = getWrapperElements(),
 		margin = getMarginWidth(),
 		percentMargin = (margin / getLayoutWidth() * 100) + '%',
-		len = gridElements.length,
+		len,
 		i = 0;
 
-		if (input == layoutWidth) localStorage.setItem( layoutWidth, this.value );
-		else if (input == marginWidth) localStorage.setItem( marginWidth, this.value );
-		else if (input == columns) localStorage.setItem( columns, this.value );
+		// add current input values to localStorage in case we reload
+		if (localStorage) {
+			if (input == layoutWidth) localStorage.setItem( layoutWidth, this.value );
+			else if (input == marginWidth) localStorage.setItem( marginWidth, this.value );
+			else if (input == columns) localStorage.setItem( columns, this.value );
+		}
 
-    for(i; i < wrappers.length; i++) {
-      wrappers[i].style.width = (getLayoutWidth() + getMarginWidth()*2) + 'px';
-    }
+		// loop through wrapper elements
+		// if editing layout width
+		if (input == layoutWidth) {
+			len = wrappers.length;
 
+			for(i; i < len; i++) {
+				if (!init) {
+					wrappers[i].style.marginLeft = 'auto';
+					wrappers[i].style.marginRight = 'auto';
+					wrappers[i].className += " group";
+				}
+				wrappers[i].style.width = (getLayoutWidth() + getMarginWidth()*2) + 'px';
+			}
+		}
+
+		// loop through grid elements
 		i = 0;
+		len = gridElements.length
+
 		for(i; i < len; i++) {
+			if (!init) {
+				gridElements[i].style.cssFloat = 'left';
+				gridElements[i].style.backgroundColor = '#333';
+				gridElements[i].style.height = '1000px';
+			}
 
 			gridElements[i].style.marginLeft = percentMargin;
 			gridElements[i].style.marginRight = percentMargin;
       gridElements[i].style.width = ((gridElements[i].getAttribute('data-grid')/getNumberOfCols() * 100) - parseFloat(percentMargin)*2) + '%';
 		}
+		init = true;
   }
 
 	function getGridElements() {
     var
-    divs = document.getElementsByTagName('div'),
+    divs = document.getElementsByTagName(gridElementTag),
 		gridElements = [],
     len = divs.length,
     i = 0;
@@ -159,6 +188,21 @@
       }
     }
 		return gridElements;
+	}
+
+	function getWrapperElements() {
+    var
+    divs = document.getElementsByTagName(wrapperElementTag),
+		wrapperElements = [],
+    len = divs.length,
+    i = 0;
+		
+    for(i; i < len; i++) {
+      if (divs[i].getAttribute('data-gridWrapper')) {
+				wrapperElements.push(divs[i]);
+      }
+    }
+		return wrapperElements;
 	}
 
   function getMarginWidth() {

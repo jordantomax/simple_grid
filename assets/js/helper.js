@@ -70,11 +70,13 @@
 		function createElement(tag, attrs) {
 			var element = document.createElement(tag);
 
-			if (typeof attrs != 'undefined') {
-				var key = getKeys(attrs),
-						value = getValues(attrs),
-						i = 0,
-						len = getSize(attrs);
+			if (attrs) {
+				var 
+				key = getKeys(attrs),
+				value = getValues(attrs),
+				i = 0,
+				len = getSize(attrs);
+
 				for (i; i < len; i++) {
 					element.setAttribute(key[i], value[i]);
 				}
@@ -104,7 +106,7 @@
 		}
 
 		// create an object that contains inputs
-		function createForm( id, obj, labels ) {
+		function createFormElements( id, obj, labels ) {
 			var inputs = createElements( 'input', id, obj );
 			return inputs;
 		}

@@ -1,49 +1,58 @@
+/* ----------------------------------------------------------------
 
-// Title:   Master styles for screen media
-// Author: Jordan Cooperman, jordancooperman@gmail.com
-// Year: 2011
+Title: Master styles for screen media
+Author: Jordan Cooperman, jordan@vectormediagroup.com
+Year: 2012
 
-//////////////////////////////////////////////////////////////////
+----------------------------------------------------------------
 
-// Table of contents
+Oh, I didn't see you there, friend.
 
-//////////////////////////////////////////////////////////////////
+Please have a look around, I hope you enjoy your stay.
 
-// 0.General
-// 1.Navigation
+----------------------------------------------------------------
 
-//////////////////////////////////////////////////////////////////
+[Table of contents] - a map of our grounds.
 
+    0.General
+        a.base elements
+        b.base classes
 
-///////////////////////////////////////
+    1.Layout
+        a.header
+        b.content
+        c.footer
 
-// 0.`General
+    2.Extensible Classes
 
-///////////////////////////////////////
+----------------------------------------------------------------
+
+[Prefixes] - some patterns that you may observe.
+
+    g: global
+    s: state
+
+---------------------------------------------------------------- */
+
+/* 0.`General
+---------------------------------------------- */
 
 @import "partials/grid";
 
-///////////////////////////////////////
+/* a.`base elements
+------------------------- */
 
-// 1.`Navigation
+/* 2.`Extensible Classes
+---------------------------------------------- */
 
-///////////////////////////////////////
-
-#site-nav {
-    p {
-        color: #ebebeb;
-    }
-}
-
-
-///////////////////////////////////////
-
-// 2.`Layout
-
-///////////////////////////////////////
-
-html,
-body {
-    height : 100%;
-    margin : 0;
+.group {
+	min-height: 1px; // ie
+	
+  &:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
 }

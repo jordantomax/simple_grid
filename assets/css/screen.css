@@ -1,3 +1,40 @@
+/* ----------------------------------------------------------------
+
+Title: Master styles for screen media
+Author: Jordan Cooperman, jordan@vectormediagroup.com
+Year: 2012
+
+----------------------------------------------------------------
+
+Oh, I didn't see you there, friend.
+
+Please have a look around, I hope you enjoy your stay.
+
+----------------------------------------------------------------
+
+[Table of contents] - a map of our grounds.
+
+    0.General
+        a.base elements
+        b.base classes
+
+    1.Layout
+        a.header
+        b.content
+        c.footer
+
+    2.Extensible Classes
+
+----------------------------------------------------------------
+
+[Prefixes] - some patterns that you may observe.
+
+    g: global
+    s: state
+
+---------------------------------------------------------------- */
+/* 0.`General
+---------------------------------------------- */
 .wrapper {
   width: 930px;
   margin: 0 auto; }
@@ -80,10 +117,15 @@
   background-color: #000;
   height: 1000px; }
 
-#site-nav p {
-  color: #ebebeb; }
-
-html,
-body {
-  height: 100%;
-  margin: 0; }
+/* a.`base elements
+------------------------- */
+/* 2.`Extensible Classes
+---------------------------------------------- */
+.group {
+  min-height: 1px; }
+  .group:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden; }
