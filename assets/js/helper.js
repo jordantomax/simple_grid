@@ -84,7 +84,7 @@
 			return element;
 		}
 
-		function createElements( tag, id, obj ) {
+		function createElements( tag, obj ) {
 			var
 			keys = getKeys(obj),
 			values = getValues(obj),
@@ -106,7 +106,9 @@
 		}
 
 		// create an object that contains inputs
-		function createFormElements( id, obj, labels ) {
-			var inputs = createElements( 'input', id, obj );
+		function createFormElements( obj, labels ) {
+			var inputs = createElements( 'input', obj );
+			if (labels) var labels = createElements( 'label');
+
 			return inputs;
 		}

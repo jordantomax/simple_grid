@@ -154,6 +154,9 @@ body {
 
 /* a.`base elements
 ------------------------- */
+input:focus {
+  outline: 0; }
+
 /* 1.`Layout
 ---------------------------------------------- */
 /* a.`header
@@ -161,8 +164,20 @@ body {
 #grid-editor {
   position: absolute;
   width: 100%;
-  padding: 1.5em;
-  background-color: #fff; }
+  padding: 0.375em 0;
+  background-color: #000;
+  background-color: rgba(0, 0, 0, 0.85);
+  -moz-box-shadow: 0 1px 1px black;
+  -webkit-box-shadow: 0 1px 1px black;
+  box-shadow: 0 1px 1px black; }
+  #grid-editor form {
+    text-align: center;
+    margin: 0 auto; }
+  #grid-editor .text {
+    padding: 0.375em 0.75em;
+    margin: 0 0.75em;
+    border: 1px solid #000;
+    background-color: rgba(255, 255, 255, 0.8); }
 
 /* 2.`Extensible Classes
 ---------------------------------------------- */

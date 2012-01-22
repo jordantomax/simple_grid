@@ -46,6 +46,11 @@ Please have a look around, I hope you enjoy your stay.
 /* a.`base elements
 ------------------------- */
 
+input {
+	&:focus {
+		outline: 0;
+	}
+}
 
 /* 1.`Layout
 ---------------------------------------------- */
@@ -56,8 +61,22 @@ Please have a look around, I hope you enjoy your stay.
 #grid-editor {
 	position: absolute;
 	width: 100%;
-	padding: $base;
-	background-color: #fff;
+	padding: $base/4 0;
+	background-color: #000;
+	background-color: rgba(0, 0, 0, 0.85);
+	@include box-shadow(0, 1px, 1px, #000);  
+
+	form {
+		text-align: center;
+		margin: 0 auto;
+	}
+
+	.text {
+		padding: $base/4 $base/2;
+		margin: 0 $base/2;
+		border: 1px solid #000;
+		background-color: rgba(255, 255, 255, 0.8); 
+	}
 }
 
 

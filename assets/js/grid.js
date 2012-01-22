@@ -23,6 +23,7 @@
       cols: {
         id: columns,
         type: 'text',
+				class: 'text',
         placeholder: 'Number of Columns',
         value: localStorage.getItem(columns) ? localStorage.getItem(columns) : 8
       },
@@ -30,6 +31,7 @@
       layoutWidth: {
         id: layoutWidth,
         type: 'text',
+				class: 'text',
         placeholder: 'Layout Width',
         value: localStorage.getItem(layoutWidth) ? localStorage.getItem(layoutWidth) : 960 
       },
@@ -37,19 +39,24 @@
       marginWidth: {
         id: marginWidth,
         type: 'text',
+				class: 'text',
         placeholder: 'Margin Width',
         value: localStorage.getItem(marginWidth) ? localStorage.getItem(marginWidth) : 10 
       }
     },
     // ...and turn them into an object that contains DOM elements
-    inputs = createFormElements( 'grid-editor', inputs ),
-		form = createElement('form', {id: 'grid-editor'});
+    inputs = createFormElements( inputs, true ),
+		gridEditor = createElement('div', {id: 'grid-editor'}),
+		wrapper = createElement('div', {'data-gridWrapper':"true"}),
+		form = createElement('form'),
     body = document.getElementsByTagName("body")[0],
     len = getSize(inputs),
     i = 0;
 
 		// insert the form inside the body
-		body.insertBefore(form, document.body.firstChild);
+		body.insertBefore(gridEditor, document.body.firstChild);
+		gridEditor.appendChild(wrapper);
+		wrapper.appendChild(form);
 
     for (i; i < len; i++) {
       // ...and insert each input into the form 
@@ -168,7 +175,7 @@
 				if (!init) {
 					wrappers[i].style.marginLeft = 'auto';
 					wrappers[i].style.marginRight = 'auto';
-					wrappers[i].className += " group";
+					wrappers[i].className = " group";
 				}
 				wrappers[i].style.width = (getLayoutWidth() + getMarginWidth()*2) + 'px';
 			}
@@ -181,7 +188,7 @@
 		for(i; i < len; i++) {
 			if (!init) {
 				gridElements[i].style.cssFloat = 'left';
-				gridElements[i].style.backgroundColor = '#333';
+				gridElements[i].style.backgroundColor = '#bbb';
 				gridElements[i].style.height = '1000px';
 			}
 
